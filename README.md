@@ -1,6 +1,6 @@
 # scaffoldingdbcontext
 
-This is  ONLY a solution using current apis and current methods.
+This is a solution used to customizing of  scaffolding db first approch using core2 apis and current methods .
 
 Can be change because of it may change or be removed in future releases of EntityFrameworkCode 2
 
