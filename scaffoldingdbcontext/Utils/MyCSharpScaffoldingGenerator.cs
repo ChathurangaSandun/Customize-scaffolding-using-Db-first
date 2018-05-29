@@ -12,16 +12,16 @@ namespace scaffoldingdbcontext.Utils
     {
         public virtual IBaseClassGenerator BaseClassGenerator { get; }
 
-        public MyCSharpScaffoldingGenerator(IFileService fileService,  ICSharpDbContextGenerator cSharpDbContextGenerator,  ICSharpEntityTypeGenerator cSharpEntityTypeGenerator, IBaseClassGenerator baseClassGenerator) 
+        public MyCSharpScaffoldingGenerator(IFileService fileService,  ICSharpDbContextGenerator cSharpDbContextGenerator,  ICSharpEntityTypeGenerator cSharpEntityTypeGenerator) 
             : base(fileService, cSharpDbContextGenerator, cSharpEntityTypeGenerator)
         {
-            BaseClassGenerator = baseClassGenerator;
+            //BaseClassGenerator = baseClassGenerator;
         }
 
         public override ReverseEngineerFiles WriteCode(IModel model, string outputPath, string @namespace, string contextName, string connectionString, bool useDataAnnotations)
         {
             var baseReverseEngineerFiles =  base.WriteCode(model, outputPath, @namespace, contextName, connectionString, useDataAnnotations);
-            var generatedCode = BaseClassGenerator.WriteCode(@namespace);
+            var generatedCode = new MyBaseClassGenerator().WriteCode(@namespace);
             var baseClassFileName = "BaseClass" + base.FileExtension;
             var entityTypeFileFullPath = FileService.OutputFile(outputPath, baseClassFileName, generatedCode);
             baseReverseEngineerFiles.EntityTypeFiles.Add(entityTypeFileFullPath);

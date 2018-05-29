@@ -27,6 +27,8 @@ namespace scaffoldingdbcontext.Utils
             _sb = new IndentedStringBuilder();
             _sb.AppendLine(code);
             _sb.AppendLine();
+
+            // create base class
             _sb.AppendLine($"public partial class BaseClass");
             _sb.AppendLine("{");
             using (_sb.Indent())
@@ -36,7 +38,10 @@ namespace scaffoldingdbcontext.Utils
 
             _sb.AppendLine();
             _sb.AppendLine("}");
+
             return _sb.ToString();
         }
     }
 }
+
+//Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=LankaCleardb;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Data/MSSQL/LankaClearDbContext -force -DataAnnotations 
